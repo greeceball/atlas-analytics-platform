@@ -1,0 +1,6 @@
+customer_id,name,email,state,created_at
+1,Alice Johnson,alice@example.com,UT,2026-01-05
+2,Bob Smith,bob@example.com,CA,2026-02-14
+3,Charlie Davis,charlie@example.com,TX,2026-03-22
+4,Diana Miller,diana@example.com,UT,2026-04-01
+5,Ethan Wilson,ethan@example.com,AZ,2026-04-18
