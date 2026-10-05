@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: >
+      Cleaned and standardized customer records from the raw customer source.
+      One row represents one customer.
+
+    columns:
+      - name: customer_id
+        description: Unique identifier for a customer.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: customer_name
+        description: Customer's full name.
+        data_tests:
+          - not_null
+
+      - name: email
+        description: Customer email address.
+        data_tests:
+          - not_null
+
+      - name: state
+        description: Two-letter state code associated with the customer.
+
+      - name: created_at
+        description: Date the customer record was created.
+        data_tests:
+          - not_null
