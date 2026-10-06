@@ -3,6 +3,7 @@ import duckdb
 
 DATABASE_PATH = Path("data/warehouse/atlas.duckdb")
 RAW_CUSTOMERS_PATH = Path("data/raw/customers.parquet")
+RAW_ORDERS_PATH = Path("data/raw/orders.parquet")
 
 def load_warehouse() -> None:
     DATABASE_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -20,8 +21,26 @@ def load_warehouse() -> None:
         [str(RAW_CUSTOMERS_PATH)],
     )
 
-    row_count = conn.execute("SELECT COUNT(*) FROM raw.customers").fetchone()[0]
-    print(f"Loaded {row_count} customers into raw.customers")
+    customer_row_count = conn.execute(
+        "SELECT COUNT(*) FROM raw.customers"
+    ).fetchone()[0]
+
+    print(f"Loaded {customer_row_count} customers into raw.customers")
+
+    conn.execute(
+        """
+        CREATE OR REPLACE TABLE raw.orders AS
+        SELECT *
+        FROM read_parquet(?)
+        """,
+        [str(RAW_ORDERS_PATH)],
+    )
+
+    order_row_count = conn.execute(
+        "SELECT COUNT(*) FROM raw.orders"
+    ).fetchone()[0]
+
+    print(f"Loaded {order_row_count} orders into raw.orders")
 
     conn.close()
 

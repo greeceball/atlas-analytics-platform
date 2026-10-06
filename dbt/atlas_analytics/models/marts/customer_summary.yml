@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: customer_summary
+    description: One row per customer with summarized order metrics.
+
+    columns:
+      - name: customer_id
+        description: Unique identifier for the customer.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: order_count
+        description: Number of orders associated with the customer.
+        data_tests:
+          - not_null
+
+      - name: completed_revenue
+        description: Revenue from completed orders only.
+        data_tests:
+          - not_null

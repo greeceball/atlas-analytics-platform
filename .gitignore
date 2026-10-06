@@ -6,3 +6,4 @@ data/raw/
 data/warehouse/
 *.duckdb
 dbt/logs/
+logs/

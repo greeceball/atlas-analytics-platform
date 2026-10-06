@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: stg_orders
+    description: >
+      Cleaned and standardized order records from the raw orders source.
+      One row represents one order.
+
+    columns:
+      - name: order_id
+        description: Unique identifier for an order.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: customer_id
+        description: Foreign key to the stg_customers model.
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_customers')
+                field: customer_id
+
+      - name: order_date
+        description: Date the order was placed.
+        data_tests:
+          - not_null
+
+      - name: amount
+        description: Total amount of the order.
+        data_tests:
+          - not_null
+
+      - name: status
+        description: Current status of the order.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - pending
+                  - completed
+                  - cancelled
