@@ -1,0 +1,36 @@
+version: 2
+
+models:
+  - name: customer_monthly_summary
+    description: >
+      Monthly order metrics at one row per customer per order month.
+      Used for analyzing customer purchasing activity and monthly order value.
+
+    columns:
+      - name: customer_month_key
+        description: >
+          Surrogate key generated from customer_id and order_month.
+          Uniquely identifies one customer-month record.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: customer_id
+        description: Unique identifier for the customer.
+        data_tests:
+          - not_null
+
+      - name: order_month
+        description: Calendar month in which the orders occurred.
+        data_tests:
+          - not_null
+
+      - name: order_count
+        description: Number of orders placed by the customer during the month.
+        data_tests:
+          - not_null
+
+      - name: total_order_amount
+        description: Total order amount for the customer during the month.
+        data_tests:
+          - not_null

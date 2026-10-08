@@ -5,5 +5,16 @@ sources:
     schema: raw
     tables:
       - name: customers
+
       - name: orders
+        config:
+          loaded_at_field: "cast(updated_at as timestamp)"
+          freshness:
+            warn_after:
+              count: 1
+              period: day
+            error_after:
+              count: 2
+              period: day
+
       

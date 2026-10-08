@@ -1,0 +1,17 @@
+version: 2
+
+exposures:
+  - name: monthly_customer_dashboard
+    label: Monthly Customer Dashboard
+    type: dashboard
+    maturity: medium
+
+    description: >
+      Example business dashboard that consumes monthly customer order metrics.
+
+    depends_on:
+      - ref('customer_monthly_summary')
+
+    owner:
+      name: Analytics Team
+      email: analytics@example.com

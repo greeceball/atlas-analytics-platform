@@ -1,0 +1,4 @@
+status,status_group
+pending,open
+completed,closed_success
+cancelled,closed_unsuccessful
